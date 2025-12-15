@@ -121,22 +121,17 @@ python main.py
 ---
 
 ## 👨‍💻 Author
-
-**Ali Haider**
-Computer Science Student | AI & Automation Enthusiast
+Hadia abbas
+Ali haider
+Computer Science Student 
 📍 Pakistan
 
-🔗 LinkedIn | GitHub
+
 
 ---
 
-## ⭐ Support
 
-If you like this project:
 
-⭐ Star the repo
-🍴 Fork it
-🧠 Learn & build smarter cities
 
 ---
 
