@@ -108,6 +108,4 @@ Hadia Abbas
 Ali Haider
 BSCS – Pakistan 🇵🇰
 
-make a submission version
 
-Just say the word.
