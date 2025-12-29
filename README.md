@@ -1,138 +1,113 @@
-# 🚦 SmartTrafficOptimizer
+🚦 Smart Traffic Route Optimizer
 
-> **AI-powered traffic flow optimization using data, vision, and intelligent decision-making**
+A desktop-based route optimization system using core Data Structures & Algorithms
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![Status](https://img.shields.io/badge/Status-Active-success)
-![AI](https://img.shields.io/badge/AI-ML%20%7C%20CV-orange)
-![License](https://img.shields.io/badge/License-MIT-purple)
 
----
 
-## 🌍 Problem Statement
+📌 Overview
 
-Urban traffic congestion causes **time loss, fuel waste, pollution, and stress**. Traditional traffic signals operate on fixed timers and **ignore real-time road conditions**.
+Smart Traffic Route Optimizer is a Java Swing desktop application connected to a C++ backend that calculates the optimal route between locations using Dijkstra’s shortest path algorithm.
 
-**SmartTrafficOptimizer** dynamically optimizes traffic signals using **AI, computer vision, and live data** to reduce congestion and improve flow.
+The project demonstrates practical usage of graphs, hashing, and priority queues with a clean frontend–backend architecture.
 
----
+✨ Features
 
-## ✨ Key Features
+Interactive Java Swing UI
 
-✅ Real-time traffic density detection
-✅ Intelligent signal timing optimization
-✅ Computer Vision–based vehicle counting
-✅ Emergency vehicle priority handling 🚑🚓
-✅ Historical data analysis & prediction
-✅ Scalable & modular architecture
+Source & destination route planning
 
----
+Shortest path calculation using Dijkstra
 
-## 🧠 How It Works
+Graph-based city map representation
 
-```mermaid
-flowchart LR
-A[Traffic Camera / Data Source] --> B[Vehicle Detection]
-B --> C[Density Analysis]
-C --> D[AI Decision Engine]
-D --> E[Optimized Signal Timing]
-```
+Location mapping using hashing
 
-1. Capture live traffic feed or dataset
-2. Detect & count vehicles using CV
-3. Analyze congestion level
-4. AI model decides optimal green/red timing
-5. Signals update dynamically
+C++ backend with socket-based communication
 
----
+Traffic visualization & simulation panel
 
-## 🛠️ Tech Stack
+🧠 Data Structures & Algorithms Used
 
-| Layer           | Technology                |
-| --------------- | ------------------------- |
-| Language        | Python                    |
-| AI/ML           | Scikit-learn / TensorFlow |
-| Computer Vision | OpenCV                    |
-| Data            | Pandas, NumPy             |
-| Visualization   | Matplotlib                |
-| Optional        | IoT / Sensors / APIs      |
+Graph (Adjacency Matrix)
 
----
+Dijkstra’s Shortest Path Algorithm
 
-## 📁 Project Structure
+HashMap (Location → Node mapping)
 
-```bash
+Priority Queue (Min-Heap)
+
+Arrays for distance & path tracking
+
+Socket programming (Java ↔ C++)
+
+🏗️ Architecture
+Java Swing UI
+   │
+   │  Socket Communication
+   ▼
+C++ Backend
+   ├── Graph
+   ├── Dijkstra
+   ├── LocationMap
+   └── Server
+
+📁 Project Structure
 SmartTrafficOptimizer/
 │
-├── data/               # Traffic datasets
-├── models/             # Trained ML models
-├── vision/             # CV vehicle detection logic
-├── optimizer/          # Signal optimization engine
-├── utils/              # Helper functions
-├── main.py             # Entry point
-├── requirements.txt
+├── java/
+│   ├── ui/
+│   │   ├── MainFrame.java
+│   │   ├── RouteSelectionPanel.java
+│   │   ├── RouteResultPanel.java
+│   │   ├── SimulationPanel.java
+│   │   └── TrafficMonitorPanel.java
+│   └── utils/
+│       └── NetworkClient.java
+│
+├── c++/
+│   ├── main.cpp
+│   ├── Server.h / Server.cpp
+│   ├── Graph.h / Graph.cpp
+│   ├── Dijkstra.h / Dijkstra.cpp
+│   ├── LocationMap.h / LocationMap.cpp
+│   └── backend.exe
+│
 └── README.md
-```
 
----
+🚀 How to Run
+Run C++ Backend
+cd c++
+g++ main.cpp Server.cpp Graph.cpp Dijkstra.cpp LocationMap.cpp -o backend -lws2_32
+backend
 
-## 🚀 Getting Started
+Run Java Frontend
 
-### 1️⃣ Clone the Repo
+Open Java project in NetBeans / IntelliJ
 
-```bash
-git clone https://github.com/your-username/SmartTrafficOptimizer.git
-cd SmartTrafficOptimizer
-```
+Run MainFrame.java
 
-### 2️⃣ Install Dependencies
+Select source & destination
 
-```bash
-pip install -r requirements.txt
-```
+Click Compute Optimal Route
 
-### 3️⃣ Run the Project
+🖥️ Screens Included
 
-```bash
-python main.py
-```
+Dashboard (animated)
 
----
+Route planning panel
 
-## 📊 Sample Output
+Route analysis results
 
-* Vehicle count per lane
-* Optimized signal duration (seconds)
-* Reduced waiting time
-* Congestion heatmap
+Traffic monitor
 
-*(Add screenshots / GIFs here for extra impact 🔥)*
+Traffic simulation view
 
----
+👨‍💻 Authors
 
-## 🔮 Future Enhancements
+Hadia Abbas
+Ali Haider
+BSCS – Pakistan 🇵🇰
 
-🔹 Deep Learning–based detection (YOLO)
-🔹 Real-time CCTV integration
-🔹 Reinforcement Learning for signals
-🔹 Smart city dashboard
-🔹 Mobile app integration
+make a submission version
 
----
-
-## 👨‍💻 Author
-Hadia abbas
-Ali haider
-Computer Science Student 
-📍 Pakistan
-
-
-
----
-
-
-
-
----
-
-> *"Optimizing traffic today for smarter cities tomorrow."* 🚦
+Just say the word.
