@@ -17,11 +17,11 @@ public class RouteSelectionPanel extends JPanel {
     private float[] particles = new float[120];
     private float roadAnimation = 0f;
     private Random rand = new Random();
-    private Timer animTimer;
+    private javax.swing.Timer animTimer;
     private boolean isComputing = false;
     private float computeProgress = 0f;
 
-    // ⚠ MUST MATCH C++ LocationData order
+    // ⚠️ MUST MATCH C++ LocationData order
     private final String[] locations = {
             "Air University (E-9)",
             "Air University (H-11)",
@@ -171,7 +171,7 @@ public class RouteSelectionPanel extends JPanel {
             }
         });
 
-        animTimer = new Timer(30, e -> {
+        animTimer = new javax.swing.Timer(30, e -> {
             glowPhase += 0.06f;
             roadAnimation += 0.015f;
             if (roadAnimation > 1f) roadAnimation = 0f;
@@ -372,7 +372,7 @@ public class RouteSelectionPanel extends JPanel {
                 computeButton.setEnabled(true);
                 
                 try {
-                    if (response == null || response.equals("ERR")) {
+                    if (response == null || response.contains("ERROR")) {
                         JOptionPane.showMessageDialog(RouteSelectionPanel.this, 
                             "❌ Backend not responding!\n\nPlease ensure:\n• C++ backend is running\n• Port 8080 is available\n• Network connection is active",
                             "Connection Error", 
@@ -380,22 +380,37 @@ public class RouteSelectionPanel extends JPanel {
                         return;
                     }
 
-                    String[] lines = response.split("\n");
+                    // Parse response (format: DISTANCE:X\nPATH:Y\nEND\n)
                     int time = -1;
                     String path = "No route";
                     
+                    String[] lines = response.split("\n");
                     for (String line : lines) {
+                        line = line.trim();
                         if (line.startsWith("DISTANCE:")) {
-                            time = Integer.parseInt(line.substring(9).trim());
-                        }
-                        if (line.startsWith("PATH:")) {
+                            String distStr = line.substring(9).trim();
+                            time = Integer.parseInt(distStr);
+                        } else if (line.startsWith("PATH:")) {
                             path = line.substring(5).trim();
                         }
                     }
 
+                    if (time == -1) {
+                        JOptionPane.showMessageDialog(RouteSelectionPanel.this,
+                            "❌ No route found!\n\nNo valid path exists between:\n• " + src + "\n• " + dst,
+                            "No Route",
+                            JOptionPane.WARNING_MESSAGE);
+                        frame.showRouteResults(-1, "No route");
+                        return;
+                    }
+
                     // Show success animation before switching
                     JOptionPane.showMessageDialog(RouteSelectionPanel.this,
-                        "✅ Route calculated successfully!\n\nTime: " + time + " minutes\n\nClick OK to view detailed analysis.",
+                        "✅ Route calculated successfully!\n\n" +
+                        "📍 From: " + src + "\n" +
+                        "🎯 To: " + dst + "\n" +
+                        "⏱️ Time: " + time + " minutes\n\n" +
+                        "Click OK to view detailed analysis.",
                         "Success",
                         JOptionPane.INFORMATION_MESSAGE);
                     
@@ -406,6 +421,7 @@ public class RouteSelectionPanel extends JPanel {
                         "⚠️ Error processing route data:\n" + ex.getMessage(), 
                         "Computation Error", 
                         JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
                 }
             }
         };
