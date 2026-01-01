@@ -47,3 +47,4 @@ void Server::close() {
     closesocket(serverSocket);
     WSACleanup();
 }
+
